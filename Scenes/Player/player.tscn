@@ -1,19 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://cof1fm5l3iv6c"]
+[gd_scene load_steps=7 format=3 uid="uid://cof1fm5l3iv6c"]
 
-[ext_resource type="Texture2D" uid="uid://7koueavfg2t1" path="res://Assets/icon.svg" id="1_fu30y"]
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_r6urf"]
+[ext_resource type="Texture2D" uid="uid://cbukfgiof518x" path="res://Assets/TileSets/tilemap-characters_packed.png" id="2_5bcgc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6h3u"]
-size = Vector2(64, 64)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m1daf"]
+radius = 5.0
+height = 12.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njs1i"]
+atlas = ExtResource("2_5bcgc")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjuv7"]
+atlas = ExtResource("2_5bcgc")
+region = Rect2(24, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_a3x4b"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_fu30y")
+"texture": SubResource("AtlasTexture_njs1i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjuv7")
 }],
 "loop": true,
-"name": &"default",
+"name": &"run",
 "speed": 5.0
 }]
 
@@ -21,8 +33,9 @@ animations = [{
 script = ExtResource("1_r6urf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_e6h3u")
+shape = SubResource("CapsuleShape2D_m1daf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_a3x4b")
+animation = &"run"

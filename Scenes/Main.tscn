@@ -1,12 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://cd3wtktd00phx"]
 
 [ext_resource type="PackedScene" uid="uid://cof1fm5l3iv6c" path="res://Scenes/Player/player.tscn" id="1_gmkul"]
-[ext_resource type="PackedScene" uid="uid://cntvy88th10y0" path="res://Scenes/Obstacles/Floor/floor.tscn" id="2_vnep6"]
+[ext_resource type="PackedScene" uid="uid://bjl6gogj0tnyb" path="res://Scenes/Obstacles/terrain.tscn" id="2_f23lx"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_gmkul")]
-position = Vector2(184, 396)
+position = Vector2(38, 18)
 
-[node name="Floor" parent="." instance=ExtResource("2_vnep6")]
-position = Vector2(647, 634)
+[node name="Terrain" parent="." instance=ExtResource("2_f23lx")]

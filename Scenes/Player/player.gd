@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
-const SPEED = 400
-const JUMPSPEED = 500
-const GRAVITY = 2500
-const FLOATVAL = 100
-const FLOATREDUCTION = 20
+const SPEED = 100
+const JUMPSPEED = 300
+const GRAVITY = 2000
+const FLOATVAL = 50
+const FLOATREDUCTION = 25
 
 var jumping = false
 var float_tracker = FLOATVAL
@@ -28,6 +28,7 @@ func get_input():
 		float_tracker -= FLOATREDUCTION
 
 	if is_on_floor() and jump:
+		jumping = true
 		velocity.y -= JUMPSPEED
 	if right:
 		velocity.x += SPEED
@@ -38,3 +39,7 @@ func _physics_process(delta):
 	velocity.y += GRAVITY * delta
 	get_input()
 	move_and_slide()
+	if velocity.length() > 0:
+		$AnimatedSprite2D.play("run")
+	else:
+		$AnimatedSprite2D.stop()
