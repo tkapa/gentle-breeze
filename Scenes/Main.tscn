@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cd3wtktd00phx"]
+[gd_scene load_steps=4 format=3 uid="uid://cd3wtktd00phx"]
 
 [ext_resource type="PackedScene" uid="uid://cof1fm5l3iv6c" path="res://Scenes/Player/player.tscn" id="1_gmkul"]
 [ext_resource type="PackedScene" uid="uid://bjl6gogj0tnyb" path="res://Scenes/Obstacles/terrain.tscn" id="2_f23lx"]
+[ext_resource type="PackedScene" uid="uid://c3m2p4mwyqr5v" path="res://Scenes/Interactables/spore.tscn" id="3_cqxt7"]
 
 [node name="Main" type="Node2D"]
 
@@ -9,3 +10,6 @@
 position = Vector2(38, 18)
 
 [node name="Terrain" parent="." instance=ExtResource("2_f23lx")]
+
+[node name="Spore" parent="." instance=ExtResource("3_cqxt7")]
+position = Vector2(251, 133)
