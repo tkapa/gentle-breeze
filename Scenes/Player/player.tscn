@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cof1fm5l3iv6c"]
 
-[ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_r6urf"]
+[ext_resource type="Script" uid="uid://dhw8mitndafjf" path="res://Scenes/Player/player.gd" id="1_r6urf"]
 [ext_resource type="Texture2D" uid="uid://cbukfgiof518x" path="res://Assets/TileSets/tilemap-characters_packed.png" id="2_5bcgc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m1daf"]
@@ -30,7 +30,9 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 5
 scale = Vector2(1.5, 1.5)
+safe_margin = 1.299
 script = ExtResource("1_r6urf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

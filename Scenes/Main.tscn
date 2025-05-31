@@ -9,6 +9,9 @@
 [node name="Player" parent="." instance=ExtResource("1_gmkul")]
 position = Vector2(38, 18)
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+
 [node name="Terrain" parent="." instance=ExtResource("2_f23lx")]
 
 [node name="Spore" parent="." instance=ExtResource("3_cqxt7")]
