@@ -17,6 +17,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	state_machine.process_physics(delta)
+	if is_on_floor():
+		movement_controller.reset_dash()
+		movement_controller.reset_jump()
 
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)

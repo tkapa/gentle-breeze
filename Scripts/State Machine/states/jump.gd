@@ -9,6 +9,7 @@ extends State
 
 func enter() -> void:
 	super()
+	movement_controller.set_jumped()
 	parent.velocity.y = -jump_force
 
 func process_input(event: InputEvent) -> State:

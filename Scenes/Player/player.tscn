@@ -88,6 +88,5 @@ script = ExtResource("8_gk6dx")
 idle_state = NodePath("../idle")
 fall_state = NodePath("../fall")
 
-[node name="movement_controller" type="Node" parent="." node_paths=PackedStringArray("parent")]
+[node name="movement_controller" type="Node" parent="."]
 script = ExtResource("8_jlvik")
-parent = NodePath("..")

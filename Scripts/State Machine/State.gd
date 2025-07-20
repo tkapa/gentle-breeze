@@ -34,4 +34,4 @@ func get_jump() -> bool:
 	return movement_controller.wants_jump()
 
 func get_dash() -> bool: 
-	return movement_controller.wants_dash()
+	return movement_controller.wants_dash() && movement_controller.could_dash()
