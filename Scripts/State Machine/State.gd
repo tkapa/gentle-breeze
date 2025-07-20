@@ -27,8 +27,11 @@ func process_physics(delta: float) -> State:
 func process_frame(delta: float) -> State:
 	return null;
 
-func get_movement_input() -> float:
+func get_movement_input() -> Vector2:
 	return movement_controller.get_movement_direction()
 
 func get_jump() -> bool:
 	return movement_controller.wants_jump()
+
+func get_dash() -> bool: 
+	return movement_controller.wants_dash()

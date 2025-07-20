@@ -2,10 +2,16 @@ extends State
 
 @export var move_state: State
 @export var idle_state: State
+@export var dash_state: State
+
+func process_input(event: InputEvent) -> State:
+	if get_dash():
+		return dash_state
+	return null;
 
 func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
-	var movement = get_movement_input() * move_speed
+	var movement = get_movement_input().x * move_speed
 
 	if movement != 0:
 		animations.flip_h = movement < 0;

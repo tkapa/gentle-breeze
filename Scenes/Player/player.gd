@@ -8,8 +8,6 @@ var state_machine = $state_machine
 @onready 
 var movement_controller := $movement_controller
 
-var jumping = false
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	state_machine.init(self, animations, movement_controller)

@@ -3,6 +3,7 @@ extends State
 @export var fall_state: State
 @export var idle_state: State
 @export var move_state: State
+@export var dash_state: State
 
 @export var jump_force := 200.0
 
@@ -10,13 +11,18 @@ func enter() -> void:
 	super()
 	parent.velocity.y = -jump_force
 
+func process_input(event: InputEvent) -> State:
+	if get_dash(): 
+		return dash_state
+	return null;
+
 func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
 	
 	if parent.velocity.y > 0:
 		return fall_state
 	
-	var movement = movement_controller.get_movement_direction() * move_speed
+	var movement = get_movement_input().x * move_speed
 	if movement != 0:
 		animations.flip_h = movement < 0;
 	
