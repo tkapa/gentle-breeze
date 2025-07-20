@@ -6,11 +6,8 @@ extends State
 @export var dash_force := 500
 @export var dash_decay := 1500
 
-@export var max_dashes := 1
-
 var initial_dash_dir : Vector2
 var negative_dash_dir : Vector2
-var total_dashes := 0
 
 func enter() -> void:
 	super()
