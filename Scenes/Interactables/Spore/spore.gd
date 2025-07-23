@@ -6,13 +6,8 @@ extends Area2D
 
 var _player: Player
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimatedSprite2D.play("default", 0.5)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 	
 func _physics_process(delta):
 	_move_toward_player(delta)
@@ -25,11 +20,18 @@ func _move_toward_player(delta: float):
 	var playerPosition := _player.position
 	var distanceTo = currentPosition.distance_to(playerPosition)
 	
-	if distanceTo > follow_distance:
-		position = currentPosition.move_toward(playerPosition * 0.95, move_speed * delta)
+	position = currentPosition.lerp(playerPosition, delta)
 
 func _on_body_entered(body):
-	if body is Player:
+	if body is Player and _player == null:
 		_player = body
-		print_debug("Body Entekrje;lkj")
 		return
+
+	if body is Flower:
+		body.activate()
+		_player = null
+		queue_free()
+		return
+
+func on_enter_flower():
+	queue_free();
