@@ -1,7 +1,7 @@
 class_name Movement_Controller
 extends Node
 
-@export var maximum_dashes := 2
+@export var maximum_dashes := 1
 
 var total_dashes := 0
 var jumped := false

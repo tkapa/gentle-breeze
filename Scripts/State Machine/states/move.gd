@@ -35,7 +35,6 @@ func process_physics(delta: float) -> State:
 	
 	animations.flip_h = movement < 0
 	parent.velocity.x = movement
-	parent.move_and_slide()
 	
 	if !parent.is_on_floor():
 		if !_coyote_time_started and _coyote_timer.is_stopped():
@@ -47,6 +46,9 @@ func process_physics(delta: float) -> State:
 	else:
 		if _coyote_time_started:
 			_coyote_time_started = false
+	
+	parent.move_and_slide()
+	
 	return null
 
 func _can_jump() -> bool:
