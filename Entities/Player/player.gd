@@ -4,9 +4,9 @@ extends CharacterBody2D
 @onready 
 var animations := $AnimatedSprite2D
 @onready
-var state_machine = $state_machine
+var state_machine = $StateMachine
 @onready 
-var movement_controller := $movement_controller
+var movement_controller := $MovementController
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

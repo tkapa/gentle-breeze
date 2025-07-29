@@ -1,0 +1,93 @@
+[gd_scene load_steps=14 format=3 uid="uid://cof1fm5l3iv6c"]
+
+[ext_resource type="Script" uid="uid://dhw8mitndafjf" path="res://Entities/Player/player.gd" id="1_r6urf"]
+[ext_resource type="Texture2D" uid="uid://cbukfgiof518x" path="res://Assets/TileSets/tilemap-characters_packed.png" id="2_5bcgc"]
+[ext_resource type="Script" uid="uid://clpc03lnjei1a" path="res://Entities/Player/StateMachine/state_machine.gd" id="3_xpcdj"]
+[ext_resource type="Script" uid="uid://blt5sqvo54ns1" path="res://Entities/Player/StateMachine/states/idle.gd" id="4_mtuoh"]
+[ext_resource type="Script" uid="uid://b8lvbcrn1rlht" path="res://Entities/Player/StateMachine/states/jump.gd" id="5_htcer"]
+[ext_resource type="Script" uid="uid://br0f01llqq1rj" path="res://Entities/Player/StateMachine/states/fall.gd" id="6_dd0ac"]
+[ext_resource type="Script" uid="uid://txdl3cyiieyw" path="res://Entities/Player/StateMachine/states/move.gd" id="7_0u5uq"]
+[ext_resource type="Script" uid="uid://ch7u7svdj0bdf" path="res://Entities/Player/StateMachine/states/dash.gd" id="8_gk6dx"]
+[ext_resource type="Script" uid="uid://bag4bl4mirq1s" path="res://Entities/Player/movement_controller.gd" id="8_jlvik"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m1daf"]
+radius = 5.0
+height = 12.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njs1i"]
+atlas = ExtResource("2_5bcgc")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjuv7"]
+atlas = ExtResource("2_5bcgc")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a3x4b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njs1i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjuv7")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 5
+scale = Vector2(1.5, 1.5)
+collision_mask = 7
+safe_margin = 1.299
+script = ExtResource("1_r6urf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_m1daf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_a3x4b")
+animation = &"run"
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("3_xpcdj")
+starting_state = NodePath("Fall")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "move_state", "fall_state", "dash_state")]
+script = ExtResource("4_mtuoh")
+jump_state = NodePath("../Jump")
+move_state = NodePath("../Move")
+fall_state = NodePath("../Fall")
+dash_state = NodePath("../Dash")
+
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state", "dash_state")]
+script = ExtResource("5_htcer")
+fall_state = NodePath("../Fall")
+idle_state = NodePath("../Idle")
+move_state = NodePath("../Move")
+dash_state = NodePath("../Dash")
+jump_force = 300.0
+
+[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "idle_state", "dash_state")]
+script = ExtResource("6_dd0ac")
+move_state = NodePath("../Move")
+idle_state = NodePath("../Idle")
+dash_state = NodePath("../Dash")
+
+[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state", "dash_state")]
+script = ExtResource("7_0u5uq")
+idle_state = NodePath("../Idle")
+jump_state = NodePath("../Jump")
+fall_state = NodePath("../Fall")
+dash_state = NodePath("../Dash")
+animation_name = "run"
+
+[node name="Dash" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "fall_state")]
+script = ExtResource("8_gk6dx")
+idle_state = NodePath("../Idle")
+fall_state = NodePath("../Fall")
+
+[node name="MovementController" type="Node" parent="."]
+script = ExtResource("8_jlvik")

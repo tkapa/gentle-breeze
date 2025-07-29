@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dlmugjgqp1cx0" path="res://Assets/TileSets/tilemap_packed.png" id="1_rjpa3"]
 [ext_resource type="Script" uid="uid://dhuwkyae348o6" path="res://Scenes/Obstacles/floating_terrain.gd" id="2_w8byo"]
-[ext_resource type="PackedScene" uid="uid://cq1h7x4unugmx" path="res://Scenes/Flower_Listener/flower_listener.tscn" id="3_o5n5f"]
+[ext_resource type="PackedScene" uid="uid://cq1h7x4unugmx" path="res://Components/FlowerListener/FlowerListenerComponent.tscn" id="3_o5n5f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w8byo"]
 texture = ExtResource("1_rjpa3")
