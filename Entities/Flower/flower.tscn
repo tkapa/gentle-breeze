@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://iqidcto6xejx"]
 
-[ext_resource type="Script" uid="uid://c8gkrpoueljxd" path="res://Scenes/Interactables/Flower/flower.gd" id="1_616ic"]
+[ext_resource type="Script" uid="uid://c8gkrpoueljxd" path="res://Entities/Flower/flower.gd" id="1_616ic"]
 [ext_resource type="Texture2D" uid="uid://cbukfgiof518x" path="res://Assets/TileSets/tilemap-characters_packed.png" id="1_jaocl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jaocl"]
-size = Vector2(24, 24)
+size = Vector2(74, 55)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_616ic"]
 atlas = ExtResource("1_jaocl")
@@ -40,15 +40,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Flower" type="StaticBody2D"]
+[node name="Flower" type="Area2D"]
 collision_layer = 8
-collision_mask = 0
+collision_mask = 4
 script = ExtResource("1_616ic")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -12)
+position = Vector2(0, -27.5)
 shape = SubResource("RectangleShape2D_jaocl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_7ik23")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

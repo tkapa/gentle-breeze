@@ -10,7 +10,7 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var parent: CharacterBody2D
 var animations: AnimatedSprite2D
-var movement_controller: Node
+var movement_controller: PlayerMovementController
 
 func enter() -> void:
 	return;

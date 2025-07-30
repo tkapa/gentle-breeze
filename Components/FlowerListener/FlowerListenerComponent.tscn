@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cq1h7x4unugmx"]
 
-[ext_resource type="Script" uid="uid://bs0svopjfhnwd" path="res://Components/FlowerListener/flower_listener.gd" id="1_fabu0"]
+[ext_resource type="Script" uid="uid://bs0svopjfhnwd" path="res://Components/FlowerListener/flower_listener_component.gd" id="1_fabu0"]
 
 [node name="FlowerListenerComponent" type="Node"]
 script = ExtResource("1_fabu0")

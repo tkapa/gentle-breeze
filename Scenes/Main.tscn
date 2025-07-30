@@ -1,17 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://cd3wtktd00phx"]
 
 [ext_resource type="PackedScene" uid="uid://cof1fm5l3iv6c" path="res://Entities/Player/player.tscn" id="1_gmkul"]
-[ext_resource type="PackedScene" uid="uid://c3m2p4mwyqr5v" path="res://Scenes/Interactables/Spore/spore.tscn" id="3_cqxt7"]
+[ext_resource type="PackedScene" uid="uid://c3m2p4mwyqr5v" path="res://Entities/Spore/spore.tscn" id="3_cqxt7"]
 [ext_resource type="PackedScene" uid="uid://cyt2fpi1nq67c" path="res://Scenes/Levels/tutorial.tscn" id="4_pbw6q"]
-[ext_resource type="PackedScene" uid="uid://iqidcto6xejx" path="res://Scenes/Interactables/Flower/flower.tscn" id="4_rgh2o"]
+[ext_resource type="PackedScene" uid="uid://iqidcto6xejx" path="res://Entities/Flower/flower.tscn" id="4_rgh2o"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_gmkul")]
-position = Vector2(38, 18)
+position = Vector2(25, 242)
 
 [node name="Spore" parent="." instance=ExtResource("3_cqxt7")]
-position = Vector2(177, 230)
+position = Vector2(350, 246)
 
 [node name="Flower" parent="." instance=ExtResource("4_rgh2o")]
 position = Vector2(475, 250)

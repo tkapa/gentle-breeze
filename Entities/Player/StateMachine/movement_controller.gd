@@ -1,4 +1,5 @@
-extends Movement_Controller
+class_name PlayerMovementController
+extends MovementController
 
 func get_movement_direction() -> Vector2:
 	var x := Input.get_axis("move_left", "move_right")

@@ -1,4 +1,4 @@
-class_name Movement_Controller
+class_name MovementController
 extends Node
 
 @export var maximum_dashes := 1

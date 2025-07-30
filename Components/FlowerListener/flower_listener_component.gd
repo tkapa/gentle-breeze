@@ -1,4 +1,3 @@
-class_name Flower_Listener
 extends Node
 
 signal on_flower_active

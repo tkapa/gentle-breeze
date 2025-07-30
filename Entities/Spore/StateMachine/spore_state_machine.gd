@@ -1,18 +1,23 @@
 extends Node
 
 @export
-var starting_state: State
+var starting_state: SporeState
 
-var current_state: State
+var current_state: SporeState
 
-func init(parent: Player, animations: AnimatedSprite2D, movement: PlayerMovementController) -> void:
+func init(
+ parent: Spore,
+ animations: AnimatedSprite2D,
+ movement_controller: SporeMovementController,
+ player_detection: PlayerDetectionComponent) -> void:
 	for child in get_children():
 		child.parent = parent
 		child.animations = animations
-		child.movement_controller = movement
+		child.movement_controller = movement_controller
+		child.player_detection_component = player_detection
 	change_state(starting_state)
 
-func change_state(new_state: State) -> void:
+func change_state(new_state: SporeState) -> void:
 	if current_state:
 		current_state.exit();
 	current_state = new_state

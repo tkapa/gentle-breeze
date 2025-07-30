@@ -1,0 +1,90 @@
+[gd_scene load_steps=15 format=3 uid="uid://c3m2p4mwyqr5v"]
+
+[ext_resource type="Script" uid="uid://b3snivo8v0300" path="res://Entities/Spore/spore.gd" id="1_play2"]
+[ext_resource type="Texture2D" uid="uid://cbukfgiof518x" path="res://Assets/TileSets/tilemap-characters_packed.png" id="1_tdf8u"]
+[ext_resource type="PackedScene" uid="uid://bdvqgpfwcex63" path="res://Components/PlayerDetector/PlayerDetectionComponent.tscn" id="3_ou3ya"]
+[ext_resource type="Script" uid="uid://dqh4atbeud44" path="res://Entities/Spore/StateMachine/spore_state_machine.gd" id="4_ohmr0"]
+[ext_resource type="Script" uid="uid://c0nvhqk77u214" path="res://Entities/Spore/StateMachine/States/idle.gd" id="5_eb11o"]
+[ext_resource type="Script" uid="uid://bnljaywkd8fxt" path="res://Entities/Spore/StateMachine/States/follow.gd" id="6_eb11o"]
+[ext_resource type="Script" uid="uid://ct6ajg17wvmim" path="res://Entities/Spore/StateMachine/movement_controller.gd" id="7_h1u21"]
+[ext_resource type="Script" uid="uid://be1nj1hy7fmhr" path="res://Entities/Spore/StateMachine/States/pushed.gd" id="7_i7hxo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ktli"]
+atlas = ExtResource("1_tdf8u")
+region = Rect2(144, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unlyi"]
+atlas = ExtResource("1_tdf8u")
+region = Rect2(168, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75mhy"]
+atlas = ExtResource("1_tdf8u")
+region = Rect2(192, 48, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6cgds"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ktli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unlyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75mhy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8jh1v"]
+radius = 5.09902
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ou3ya"]
+radius = 50.0
+
+[node name="Spore" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 10
+script = ExtResource("1_play2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6cgds")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8jh1v")
+
+[node name="PlayerDetectionComponent" parent="." instance=ExtResource("3_ou3ya")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionComponent"]
+shape = SubResource("CircleShape2D_ou3ya")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("4_ohmr0")
+starting_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("follow_state", "pushed_state")]
+script = ExtResource("5_eb11o")
+follow_state = NodePath("../Follow")
+pushed_state = NodePath("../Pushed")
+move_speed = 5.0
+
+[node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "pushed_state")]
+script = ExtResource("6_eb11o")
+idle_state = NodePath("../Idle")
+pushed_state = NodePath("../Pushed")
+move_speed = 100.0
+
+[node name="Pushed" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("7_i7hxo")
+idle_state = NodePath("../Idle")
+push_strength = 600
+push_decay = 800
+move_speed = 500.0
+
+[node name="SporeMovementController" type="Node" parent="."]
+script = ExtResource("7_h1u21")
+metadata/_custom_type_script = "uid://ct6ajg17wvmim"
+
+[editable path="PlayerDetectionComponent"]

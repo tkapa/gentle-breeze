@@ -3,12 +3,12 @@
 [ext_resource type="Script" uid="uid://dhw8mitndafjf" path="res://Entities/Player/player.gd" id="1_r6urf"]
 [ext_resource type="Texture2D" uid="uid://cbukfgiof518x" path="res://Assets/TileSets/tilemap-characters_packed.png" id="2_5bcgc"]
 [ext_resource type="Script" uid="uid://clpc03lnjei1a" path="res://Entities/Player/StateMachine/state_machine.gd" id="3_xpcdj"]
-[ext_resource type="Script" uid="uid://blt5sqvo54ns1" path="res://Entities/Player/StateMachine/states/idle.gd" id="4_mtuoh"]
-[ext_resource type="Script" uid="uid://b8lvbcrn1rlht" path="res://Entities/Player/StateMachine/states/jump.gd" id="5_htcer"]
-[ext_resource type="Script" uid="uid://br0f01llqq1rj" path="res://Entities/Player/StateMachine/states/fall.gd" id="6_dd0ac"]
-[ext_resource type="Script" uid="uid://txdl3cyiieyw" path="res://Entities/Player/StateMachine/states/move.gd" id="7_0u5uq"]
-[ext_resource type="Script" uid="uid://ch7u7svdj0bdf" path="res://Entities/Player/StateMachine/states/dash.gd" id="8_gk6dx"]
-[ext_resource type="Script" uid="uid://bag4bl4mirq1s" path="res://Entities/Player/movement_controller.gd" id="8_jlvik"]
+[ext_resource type="Script" uid="uid://blt5sqvo54ns1" path="res://Entities/Player/StateMachine/States/idle.gd" id="4_mtuoh"]
+[ext_resource type="Script" uid="uid://b8lvbcrn1rlht" path="res://Entities/Player/StateMachine/States/jump.gd" id="5_htcer"]
+[ext_resource type="Script" uid="uid://br0f01llqq1rj" path="res://Entities/Player/StateMachine/States/fall.gd" id="6_dd0ac"]
+[ext_resource type="Script" uid="uid://txdl3cyiieyw" path="res://Entities/Player/StateMachine/States/move.gd" id="7_0u5uq"]
+[ext_resource type="Script" uid="uid://ch7u7svdj0bdf" path="res://Entities/Player/StateMachine/States/dash.gd" id="8_gk6dx"]
+[ext_resource type="Script" uid="uid://d0ssniel33cm0" path="res://Entities/Player/StateMachine/movement_controller.gd" id="8_jlvik"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m1daf"]
 radius = 5.0
@@ -39,7 +39,7 @@ animations = [{
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
 scale = Vector2(1.5, 1.5)
-collision_mask = 7
+collision_mask = 2
 safe_margin = 1.299
 script = ExtResource("1_r6urf")
 
